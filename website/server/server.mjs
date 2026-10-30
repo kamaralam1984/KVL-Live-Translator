@@ -8,7 +8,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, scrypt, timingSafeEqual, createHash } from 'node:crypto';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, extname, join } from 'node:path';
 
 const scryptAsync = promisify(scrypt);
 const here = dirname(fileURLToPath(import.meta.url));
@@ -230,6 +230,22 @@ async function servePage(res) {
   res.end(html);
 }
 
+const ASSET_TYPES = { '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
+async function serveAsset(res, pathname) {
+  const name = pathname.slice('/assets/'.length);
+  const type = ASSET_TYPES[extname(name).toLowerCase()];
+  // Flat file names only: no subdirectories, no traversal.
+  if (!type || !/^[\w.-]+$/.test(name) || name.includes('..')) throw httpError(404, 'Nahi mila.');
+  let body;
+  try {
+    body = await readFile(join(here, '..', 'assets', name));
+  } catch {
+    throw httpError(404, 'Nahi mila.');
+  }
+  res.writeHead(200, { ...SECURITY_HEADERS, 'Cache-Control': 'public, max-age=3600', 'Content-Type': type });
+  res.end(body);
+}
+
 const ALLOWED_HOSTS = new Set([`127.0.0.1:${PORT}`, `localhost:${PORT}`, ...(process.env.ALLOWED_HOSTS ?? '').split(',').filter(Boolean)]);
 
 const server = http.createServer(async (req, res) => {
@@ -239,6 +255,7 @@ const server = http.createServer(async (req, res) => {
     const { pathname } = new URL(req.url ?? '/', 'http://local');
 
     if (req.method === 'GET' && (pathname === '/' || pathname === '/index.html')) return await servePage(res);
+    if (req.method === 'GET' && pathname.startsWith('/assets/')) return await serveAsset(res, pathname);
     if (req.method === 'GET' && pathname === '/api/me') return me(req, res);
 
     if (req.method === 'POST' && pathname.startsWith('/api/')) {

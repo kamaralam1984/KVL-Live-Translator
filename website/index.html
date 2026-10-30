@@ -7,7 +7,7 @@
 <meta name="description" content="Meet. Understand. Respond. Your real-time meeting language assistant.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&family=Dancing+Script:wght@600&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#fbf8f2; --paper2:#f4eee2; --ink:#1c1a17; --mute:#6c655a; --faint:#9a9285;
@@ -297,6 +297,155 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dlc h3{font-size:22px}.dlc p{color:var(--mute);font-size:14px}.dlc .btn{justify-content:center}
 .dlc .alt{font-size:13.5px;text-align:center;color:var(--mute)}.dlc .alt a{text-decoration:underline}
 @media (max-width:700px){.dlg{grid-template-columns:1fr}}
+/* ================= hero v2 (1536x1024 stage) ================= */
+:root{--h-surf:rgba(255,255,255,.9);--h-surf2:rgba(255,255,255,.72);--h-line:rgba(190,150,70,.16);--h-gold:#b97d17;--h-blue:#1f74c9;--h-shadow:0 18px 44px -20px rgba(110,80,25,.35),0 2px 8px rgba(110,80,25,.06)}
+[data-theme=dark]{--h-surf:rgba(26,28,33,.88);--h-surf2:rgba(26,28,33,.7);--h-line:rgba(255,255,255,.1);--h-gold:#e0b04e;--h-blue:#6aaeff;--h-shadow:0 18px 44px -20px rgba(0,0,0,.8)}
+.h2{position:relative;height:calc(1024px*var(--k,1));overflow:hidden;background:var(--paper)}
+.st{position:absolute;left:50%;top:0;width:1536px;height:1024px;transform:translateX(-50%) scale(var(--k,1));transform-origin:50% 0}
+.st>*{position:absolute}
+.ph{left:0;top:0;width:1536px;height:1024px;background:url(assets/hero.jpg) 0 0/1536px 1024px no-repeat}
+.ph::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 54%,var(--paper) 69%),
+  linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(255,255,255,.88) 300px,rgba(255,255,255,0) 700px)}
+[data-theme=dark] .ph::after{background:
+  linear-gradient(180deg,rgba(14,15,18,.45) 0,rgba(14,15,18,.35) 54%,var(--paper) 69%),
+  linear-gradient(90deg,rgba(14,15,18,.97) 0,rgba(14,15,18,.85) 300px,rgba(14,15,18,0) 700px)}
+.swoosh{left:0;top:0;width:1536px;height:1024px;pointer-events:none}
+
+/* nav */
+.h-logo{left:106px;top:14px;display:flex;align-items:center;gap:13px}
+.h-logo svg{width:46px;height:54px}
+.h-logo b{display:block;font-family:Inter,sans-serif;font-weight:800;font-size:28px;line-height:1;letter-spacing:.02em}
+.h-logo small{display:block;font-family:Inter,sans-serif;font-weight:500;font-size:18.500px;line-height:1.1;margin-top:1px}
+.h-menu a{position:absolute;top:22px;font-size:13.500px;font-weight:500;line-height:22px;white-space:nowrap;padding-bottom:6px}
+.h-menu{left:0;top:0}
+.h-menu a.on{color:#b97d17}
+.h-menu a.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;border-radius:2px;background:#d9a63f}
+.h-theme{left:1071px;top:22px;width:89px;height:40px;border-radius:999px;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.05);box-shadow:0 6px 16px -8px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+.h-theme i{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-size:22px;color:#e7a82a}
+.h-theme i:last-child{background:#111318;color:#fff;font-size:20px}
+[data-theme=dark] .h-theme{background:rgba(30,32,38,.9)}
+[data-theme=dark] .h-theme i:first-child{background:#e7a82a;color:#111}
+.h-acct{left:940px;top:23px;width:110px;height:36px;display:flex;justify-content:flex-end;align-items:center;white-space:nowrap}
+.h-acct *{white-space:nowrap}
+.h-acct .btn{padding:7px 14px;font-size:13px}
+.h-dl{left:1195px;top:14px;width:255px;height:56px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:18px;font-weight:500;color:#fff;background:linear-gradient(180deg,#d7a03a 0%,#b9801d 52%,#99650f 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 12px 26px -10px rgba(143,95,18,.8)}
+.h-dl .ico{font-size:26px}.h-dl .ico:last-child{font-size:22px}
+
+/* copy */
+.h-badge{left:93px;top:126px;height:33px;padding:0 17px 0 14px;display:flex;align-items:center;gap:11px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid rgba(0,0,0,.09);font-size:12.500px;font-weight:500;letter-spacing:.01em;color:#3a352c;white-space:nowrap}
+[data-theme=dark] .h-badge{background:rgba(26,28,33,.85);border-color:rgba(255,255,255,.14);color:var(--ink)}
+.h-badge i{width:11px;height:11px;border-radius:50%;background:#f0a22d}
+.h-h1{left:90px;top:172px;font-family:Inter,sans-serif;font-weight:800;font-size:71.500px;line-height:68px;letter-spacing:-.045em;white-space:nowrap;color:var(--ink);text-shadow:none}
+.h-h1 span{display:block;color:var(--ink);text-shadow:none}
+.h-h1 span.gold-t{color:transparent;background:linear-gradient(180deg,#c28522 0%,#b3761a 55%,#9a620f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-sub{left:95px;top:326px;font-size:20px;line-height:27px;color:#46413a;font-weight:400;white-space:nowrap}
+[data-theme=dark] .h-sub{color:var(--mute)}
+.h-os{top:408px;height:85px;border-radius:20px;background:var(--h-surf2);border:1px solid var(--h-line);box-shadow:0 10px 26px -16px rgba(110,80,25,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.h-os.tint{background:linear-gradient(180deg,rgba(255,226,196,.8),rgba(255,214,176,.7));border-color:rgba(233,84,32,.16)}
+[data-theme=dark] .h-os.tint{background:rgba(233,84,32,.18)}
+.osc{display:flex;align-items:center;gap:14px;height:100%;padding:0 16px}
+.osc>svg{width:42px;height:42px;flex:none}
+.osc b{display:block;font-size:13.500px;font-weight:500;line-height:1.2}
+.osc em{display:flex;align-items:center;gap:6px;font-style:normal;font-size:12px;color:var(--mute);margin-top:6px;white-space:nowrap}
+.osc em .ico{font-size:14px}
+.h-works{left:95px;top:516px;font-size:12px;color:#4a453d;white-space:nowrap}
+[data-theme=dark] .h-works{color:var(--mute)}
+.h-apps span{position:absolute;top:551px;display:flex;align-items:center;gap:11px;font-size:13.500px;font-weight:500;white-space:nowrap}
+.h-apps svg{width:36px;height:36px}
+
+/* live cards */
+.h-listen{left:662px;top:117px;width:202px;height:114px;border-radius:22px;background:var(--h-surf);box-shadow:var(--h-shadow);border:1px solid var(--h-line)}
+.h-listen .mic{position:absolute;left:14px;top:14px;width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,#f6b94d,#e0911f);color:#fff;display:grid;place-items:center;font-size:20px}
+.h-listen b{position:absolute;left:61px;top:21px;font-size:13.500px;font-weight:500}
+.h-listen .wf{position:absolute;left:18px;right:18px;top:58px;height:44px}
+.wf[data-lw] i{width:2.200px}.wf[data-lw]{gap:2.300px}
+.wf.blue i{background:linear-gradient(180deg,#5aa6ff,#1f6fd0)}.wf.green i{background:linear-gradient(180deg,#5fd39a,#14a35f)}
+.h-arc{left:672px;top:238px;width:120px;height:330px;pointer-events:none}
+.h-rail{left:721px;top:253px;width:54px;display:grid;gap:8px}
+.h-rail i{width:54px;height:54px;border-radius:50%;background:var(--h-surf);box-shadow:var(--h-shadow);border:1px solid var(--h-line);display:grid;place-items:center;font-size:25px;color:#d9962a}
+.h-rail i:first-child,.h-rail i:nth-child(4),.h-rail i:nth-child(5){color:#e39a22}.h-rail i:nth-child(2),.h-rail i:nth-child(3){color:#2b2620}
+.h-script{left:1296px;top:92px;font-family:"Dancing Script","Brush Script MT",cursive;font-weight:600;font-size:29px;line-height:32px;color:#b97d17;transform:rotate(-14deg);transform-origin:0 0;white-space:nowrap;letter-spacing:0}
+.h-script{left:1304px;top:118px;font-size:25px;line-height:28px}
+.h-curve{left:1124px;top:128px;width:220px;height:90px;pointer-events:none}
+.h-tr{width:270px;border-radius:20px;background:var(--h-surf);box-shadow:var(--h-shadow);border:1px solid var(--h-line);padding:16px 15px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.h-tr.en{left:1212px;top:211px;height:136px}
+.h-tr.hi{left:1215px;top:362px;height:151px}
+.h-tr .hd{display:flex;align-items:center;gap:9px;height:26px}
+.h-tr .lang{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:11.500px;font-weight:700;background:#2a7de1}
+.h-tr.hi .lang{background:#1ea866}
+.h-tr .hd b{font-size:12.500px;font-weight:500;white-space:nowrap}
+.h-tr .hd .wf{margin-left:auto;width:62px;height:24px}
+.h-tr p{margin-top:11px;max-width:218px;font-size:15.200px;line-height:22.500px;color:var(--ink)}
+.h-tr.hi p{font-family:var(--deva);font-size:17px;line-height:25px}
+.h-tr time{position:absolute;right:15px;bottom:11px;font-size:12px;color:var(--mute)}
+.h-tr.en time{bottom:11px}
+
+/* stats */
+.h-stats{left:72px;top:638px;width:1404px;height:88px;border-radius:26px;background:var(--h-surf);box-shadow:var(--h-shadow);border:1px solid var(--h-line);display:flex}
+.h-stats>div{flex:1 1 0;display:flex;align-items:center;gap:15px;padding:0 0 0 38px;position:relative}
+.h-stats>div+div::before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:1px;background:var(--h-line);background:rgba(120,110,90,.2)}
+.h-stats>div:nth-child(1){flex:0 0 202px;padding-left:38px}
+.h-stats>div:nth-child(2){flex:0 0 285px}.h-stats>div:nth-child(3){flex:0 0 218px;padding-left:30px}
+.h-stats>div:nth-child(4){flex:0 0 242px;padding-left:32px}.h-stats>div:nth-child(5){flex:0 0 230px;padding-left:34px}.h-stats>div:nth-child(6){padding-left:36px}
+.h-stats .ico{font-size:40px;color:#e0a02c;flex:none;stroke-width:1.600}
+.h-stats .ico.bolt{color:#f0a52c}
+.h-stats b{display:block;font-size:12.800px;font-weight:600;line-height:19px}
+.h-stats em{display:block;font-style:normal;font-size:11.300px;color:var(--mute);margin-top:3px;white-space:nowrap}
+
+/* how it works */
+.h-how{left:96px;top:782px}
+.h-how .ey{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:500;color:var(--h-blue);letter-spacing:.01em}
+.h-how .ey i{width:41px;height:2px;background:#d9a63f;display:block}
+.h-how h2{margin-top:14px;font-family:Inter,sans-serif;font-weight:800;font-size:44.500px;line-height:47px;letter-spacing:-.045em;white-space:nowrap;color:var(--ink)}
+.h-how h2 .gold-t{background:linear-gradient(180deg,#c28522,#a56a12);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-steps{left:485px;top:797px;width:972px;height:152px}
+.h-steps .stp{position:absolute;top:0;width:156px;height:152px;border-radius:24px;background:var(--h-surf);box-shadow:var(--h-shadow);border:1px solid var(--h-line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding-top:6px}
+.stp .n{position:absolute;left:13px;top:1px;width:36px;height:36px;border-radius:50%;background:#fdd9a0;color:#7a4a05;font-size:14px;font-weight:600;display:grid;place-items:center;box-shadow:0 4px 10px -4px rgba(190,120,20,.5);border:2px solid #fff}
+.stp>.ico{font-size:29px;color:#1b1a17;stroke-width:1.900}
+[data-theme=dark] .stp>.ico{color:var(--ink)}
+.stp b{font-size:13.800px;font-weight:500}
+.stp .wf{width:112px;height:30px;gap:2px}.stp .wf i{width:2px}
+.h-steps .stp:nth-of-type(1){left:0}.h-steps .stp:nth-of-type(2){left:207px}.h-steps .stp:nth-of-type(3){left:410px}.h-steps .stp:nth-of-type(4){left:612px}.h-steps .stp:nth-of-type(5){left:815px}
+.h-steps .ar{position:absolute;top:66px;font-size:18px;color:#5a8fd0;stroke-width:2}
+.h-steps .ar:nth-of-type(1){left:173px}.h-steps .ar:nth-of-type(2){left:376px}.h-steps .ar:nth-of-type(3){left:578px}.h-steps .ar:nth-of-type(4){left:781px}
+
+/* mobile: reflow the stage */
+@media (max-width:820px){
+  .h2{height:auto}
+  .st{position:relative;left:auto;transform:none;width:auto;height:auto;padding:18px 18px 28px;display:flex;flex-direction:column;gap:16px}
+  .st>*{position:relative;left:auto!important;top:auto!important}
+  .ph{order:3;height:340px;width:auto;border-radius:24px;background-size:cover;background-position:62% 12%;overflow:hidden}
+  .ph::after{background:linear-gradient(180deg,rgba(255,255,255,0) 70%,rgba(255,255,255,.25))}
+  .swoosh,.h-arc,.h-curve,.h-rail,.h-script,.h-works{display:none}
+  .h-logo{order:0}.h-menu{display:none}
+  .h-theme,.h-acct,.h-dl{position:absolute!important;top:18px!important}
+  .h-theme{right:150px;left:auto!important;width:70px;height:34px}.h-theme i{width:28px;height:28px;font-size:17px}
+  #acct{display:none}
+  .h-sub br{display:none}
+  .h-dl{right:18px;left:auto!important;width:auto;height:44px;padding:0 16px;font-size:15px;gap:8px}.h-dl .ico{font-size:18px}
+  .h-badge{order:1;align-self:flex-start;margin-top:20px}
+  .h-h1{order:2;font-size:clamp(36px,11.2vw,64px);line-height:1.04;white-space:normal}
+  .h-sub{order:2;font-size:17px;line-height:25px;white-space:normal}
+  .h-os{order:2;width:auto!important;height:70px}
+  .h-apps{order:2;display:flex;flex-wrap:wrap;gap:12px 22px}.h-apps span{position:static;font-size:14px}
+  .h-apps svg{width:28px;height:28px}
+  .h-listen{order:4;width:auto}
+  .h-tr{order:4;width:auto;height:auto!important;padding-bottom:34px}
+  .h-stats{order:5;width:auto;height:auto;flex-wrap:wrap;border-radius:22px;padding:10px 0}
+  .h-stats>div,.h-stats>div:nth-child(n){flex:1 1 50%!important;padding:14px 16px!important;height:auto}
+  .h-stats>div+div::before{display:none}
+  .h-how{order:6;margin-top:18px}.h-how h2{font-size:34px;line-height:36px;white-space:normal}
+  .h-steps{order:7;width:auto;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .h-steps .stp{position:relative;left:auto!important;width:auto;height:136px}
+  .h-steps .ar{display:none}
+}
+@media (max-width:560px){.h-dl span{display:none}.h-theme{right:112px}.h-os .osc{padding:0 12px}.h-listen{display:none}}
+.faq{max-width:760px;margin:30px auto 0;display:grid;gap:12px}
+.faq details{background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:16px 20px;box-shadow:var(--card-shadow)}
+.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:#b97d17;font-size:20px;line-height:1}.faq details[open] summary::after{content:"\2212"}
+.faq p{color:var(--mute);margin-top:10px;font-size:15px}
 </style>
 </head>
 <body>
@@ -324,127 +473,88 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.500"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
 </svg>
 
-<header class="nav">
-  <a class="logo" href="#home" aria-label="KVL Live Translator">
-    <svg viewBox="0 0 34 52" fill="none"><rect x="9.500" y="2" width="15" height="28" rx="7.500" fill="currentColor"/><path d="M3 22a14 14 0 0 0 28 0M17 36v10M9 47h16" stroke="currentColor" stroke-width="3.200" stroke-linecap="round"/></svg>
-    <span><b>KVL</b><small>Live Translator</small></span>
-  </a>
-  <nav class="menu" aria-label="Primary">
-    <a class="on" href="#home">Home</a><a href="#features">Features</a><a href="#how">How It Works</a><a href="#screenshots">Screenshots</a><a href="#use-cases">Use Cases</a><a href="#pricing">Pricing</a>
-  </nav>
-  <div class="right">
-    <button class="theme" id="themeBtn" type="button" aria-label="Toggle light and dark theme"><i><svg class="ico"><use href="#i-sun"/></svg></i><i><svg class="ico"><use href="#i-moon"/></svg></i></button>
-    <div id="acct"></div>
-    <a class="btn deep" href="#get"><svg class="ico" style="font-size:18px"><use href="#i-dl"/></svg><span class="dlt">Download App</span></a>
-  </div>
-</header>
-
 <main id="home">
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hb-sky"></div><div class="hb-city"></div><div class="hb-bokeh"></div>
-    <div class="hb-desk"></div><div class="hb-glow"></div>
-    <svg class="hb-plant" viewBox="0 0 210 330" fill="none"><g fill="#0c1612"><path d="M105 330C100 250 96 190 70 120 60 90 40 60 10 40c40 0 70 30 88 80 6-40 4-80-14-120 40 30 52 80 48 140 8-30 30-60 60-70-24 22-34 56-38 96 14-20 36-32 62-34-30 12-50 40-52 80-2 52 0 130 0 168z"/><path d="M104 330c-30-60-60-70-104-60 40-4 70 12 90 40z"/></g><path d="M105 330C100 250 96 190 70 120 60 90 40 60 10 40" stroke="rgba(230,180,90,.25)" stroke-width="1.500"/></svg>
-    <div class="hb-mouse"></div>
-    <div class="hb-vig"></div>
-    <svg class="hb-sw" viewBox="0 0 1536 628" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="sw1" x1="0" x2="1"><stop offset="0" stop-color="#ffd890" stop-opacity="0"/><stop offset=".35" stop-color="#ffd98f" stop-opacity=".9"/><stop offset=".7" stop-color="#e6a640" stop-opacity=".7"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></linearGradient>
-        <linearGradient id="sw2" x1="0" x2="1"><stop offset="0" stop-color="#ffcf80" stop-opacity="0"/><stop offset=".5" stop-color="#ffe4a8" stop-opacity=".75"/><stop offset="1" stop-color="#ffcf80" stop-opacity="0"/></linearGradient>
-        <filter id="bl"><feGaussianBlur stdDeviation="1.600"/></filter><filter id="bl2"><feGaussianBlur stdDeviation="9"/></filter>
-      </defs>
-      <g fill="none" stroke-linecap="round">
-        <path d="M520 330C560 180 690 110 820 170c-90-20-190 30-250 160" stroke="url(#sw1)" stroke-width="16" filter="url(#bl2)" opacity=".7"/>
-        <path d="M560 300C610 190 700 140 790 160" stroke="url(#sw1)" stroke-width="3" filter="url(#bl)"/>
-        <path d="M545 330C600 205 705 132 810 156" stroke="url(#sw1)" stroke-width="2" filter="url(#bl)" opacity=".8"/>
-        <path d="M575 275C640 180 720 150 770 150" stroke="url(#sw2)" stroke-width="6" filter="url(#bl)" opacity=".7"/>
-        <path d="M0 590C260 520 560 535 900 585 1150 622 1350 600 1536 520" stroke="url(#sw2)" stroke-width="26" filter="url(#bl2)" opacity=".55"/>
-        <path d="M80 612C330 548 600 560 930 610 1180 640 1360 610 1536 540" stroke="url(#sw1)" stroke-width="3" filter="url(#bl)" opacity=".85"/>
-        <path d="M120 622C360 566 620 574 950 622 1200 650 1380 618 1536 560" stroke="url(#sw2)" stroke-width="1.600" filter="url(#bl)" opacity=".8"/>
-      </g>
-    </svg>
-  </div>
+<section class="h2" id="h2">
+  <div class="st" id="st">
+    <div class="ph"></div>
+    <svg class="swoosh" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"><path d="M0 700C260 640 420 760 700 720S1200 640 1536 700" fill="none" stroke="rgba(120,160,220,.22)" stroke-width="1.4"/><path d="M0 740C300 690 480 800 760 760S1240 690 1536 750" fill="none" stroke="rgba(230,185,100,.3)" stroke-width="1.4"/><path d="M0 960C300 900 600 1010 900 950S1300 900 1536 940" fill="none" stroke="rgba(120,160,220,.18)" stroke-width="1.2"/></svg>
 
-  <div class="stage" id="stage">
-    <div class="badge"><i></i>Real-Time Meeting Translator</div>
-    <h1><span>Meet</span><span class="gold-t">Understand</span><span>Respond</span></h1>
-    <p class="sub">Your real-time meeting language assistant.</p>
-    <a class="btn gold cta1" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Windows.zip" download><svg viewBox="0 0 24 24"><path fill="#2a1d06" d="M3 5.100 10.500 4v7H3zM11.500 3.900 21 2.500V11h-9.500zM3 12h7.500v7L3 17.900zM11.500 12H21v8.500l-9.500-1.400z"/></svg>Download for Windows<svg class="ico" style="font-size:20px"><use href="#i-arrow"/></svg></a>
-    <a class="btn cta2" href="#how"><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.500v15l13-7.500z"/></svg></span>Watch Video</a>
-    <div class="feats">
-      <div><svg class="ico"><use href="#i-bolt"/></svg>Real-Time</div>
-      <div><svg class="ico"><use href="#i-shield"/></svg>100% Private</div>
-      <div><svg class="ico"><use href="#i-wifi"/></svg>Works Offline</div>
-      <div><svg class="ico"><use href="#i-globe"/></svg>Multiple Languages</div>
+    <!-- nav -->
+    <a class="h-logo" href="#home" aria-label="KVL Live Translator">
+      <svg viewBox="0 0 46 54" aria-hidden="true"><g fill="#e0a73a"><rect x="2" y="22" width="4.600" height="14" rx="2.300"/><rect x="10" y="12" width="4.600" height="32" rx="2.300"/><rect x="18" y="3" width="4.600" height="50" rx="2.300"/><rect x="26" y="9" width="4.600" height="38" rx="2.300"/><rect x="34" y="17" width="4.600" height="22" rx="2.300"/><rect x="42" y="24" width="3.600" height="9" rx="1.800"/></g></svg>
+      <span><b>KVL</b><small>Live Translator</small></span>
+    </a>
+    <nav class="h-menu" aria-label="Primary">
+      <a class="on" href="#home" style="left:407px">Home</a><a href="#features" style="left:487px">Features</a><a href="#how" style="left:583px">How It Works</a><a href="#use-cases" style="left:705px">Use Cases</a><a href="#pricing" style="left:810px">Pricing</a><a href="#faq" style="left:896px">FAQ</a>
+    </nav>
+    <button class="h-theme" id="themeBtn" type="button" aria-label="Toggle light and dark theme"><i><svg class="ico"><use href="#i-sun"/></svg></i><i><svg class="ico"><use href="#i-moon"/></svg></i></button>
+    <div class="h-acct" id="acct"></div>
+    <a class="h-dl" href="#get"><svg class="ico"><use href="#i-dl"/></svg><span>Download App</span><svg class="ico"><use href="#i-arrow"/></svg></a>
+
+    <!-- copy -->
+    <div class="h-badge"><i></i>REAL-TIME MEETING TRANSLATOR</div>
+    <h1 class="h-h1"><span>Speak Freely.</span><span class="gold-t">Be Understood.</span></h1>
+    <p class="h-sub">Live translation for Zoom, Google Meet, Teams <br>and any meeting. In any language.</p>
+
+    <div class="h-os" style="left:93px;width:186px">
+      <a class="osc" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Windows.zip" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1d8be8" d="M2 4.600 10.500 3.400v8H2zM11.500 3.300 22 1.800v9.600H11.500zM2 12.600h8.500v8L2 19.400zM11.500 12.600H22v9.600l-10.500-1.500z"/></svg>
+        <span><b>Windows</b><em>Download App <svg class="ico"><use href="#i-arrow"/></svg></em></span></a>
+    </div>
+    <div class="h-os" style="left:292px;width:182px;opacity:.8">
+      <a class="osc" href="#get">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1c1a17" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.040-2.040.027-3.910 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.090 1.013 1.454 2.208 3.090 3.792 3.039 1.520-.065 2.090-.987 3.935-.987 1.831 0 2.350.987 3.960.948 1.637-.026 2.676-1.480 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.220-4.857-.026-3.040 2.480-4.494 2.597-4.559-1.429-2.090-3.623-2.324-4.390-2.376-2-.156-3.675 1.090-4.610 1.090zM15.530 3.830c.843-1.012 1.400-2.427 1.245-3.830-1.207.052-2.662.805-3.532 1.818-.780.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span><b>macOS</b><em>Coming soon</em></span></a>
+    </div>
+    <div class="h-os tint" style="left:486px;width:202px">
+      <a class="osc" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Ubuntu.deb" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e95420"/><circle cx="12" cy="12" r="5.200" fill="none" stroke="#fff" stroke-width="1.800"/><circle cx="12" cy="6.800" r="2" fill="#e95420" stroke="#fff" stroke-width="1.400"/><circle cx="7.500" cy="14.600" r="2" fill="#e95420" stroke="#fff" stroke-width="1.400"/><circle cx="16.500" cy="14.600" r="2" fill="#e95420" stroke="#fff" stroke-width="1.400"/></svg>
+        <span><b>Ubuntu / Linux</b><em>Download App <svg class="ico"><use href="#i-arrow"/></svg></em></span></a>
     </div>
 
-    <div class="apps glass" aria-hidden="true">
-      <div class="app" style="background:linear-gradient(180deg,#3b9bff,#1a66e8)"><svg width="36" height="36" viewBox="0 0 36 36"><rect x="4" y="9" width="19" height="18" rx="5" fill="#fff"/><path d="m25 15 8-5v16l-8-5z" fill="#fff"/></svg></div>
-      <div class="app" style="background:linear-gradient(180deg,#fff,#e9edf4)"><svg width="38" height="38" viewBox="0 0 38 38"><path d="M5 12a3 3 0 0 1 3-3h11v9H5z" fill="#ea4335"/><path d="M5 18h14v10H8a3 3 0 0 1-3-3z" fill="#4285f4"/><path d="M19 9h4l4 4v5h-8z" fill="#fbbc04"/><path d="M19 18h8v10h-8z" fill="#34a853"/><path d="m27 15 6-4v16l-6-4z" fill="#34a853"/></svg></div>
-      <div class="app" style="background:linear-gradient(180deg,#6469df,#3f44b8)"><svg width="38" height="38" viewBox="0 0 38 38"><circle cx="26" cy="11" r="4" fill="#cfd2ff"/><rect x="21" y="16" width="12" height="12" rx="4" fill="#cfd2ff"/><rect x="5" y="9" width="20" height="21" rx="4" fill="#fff"/><path d="M10 15h10M15 15v10" stroke="#3f44b8" stroke-width="3.500" stroke-linecap="round"/></svg></div>
+    <div class="h-works">Works with your favourite meeting apps</div>
+    <div class="h-apps">
+      <span style="left:98px"><svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#2d8cff"/><rect x="7" y="11.500" width="14" height="13" rx="3" fill="#fff"/><path d="m23 16 6-3.500v11L23 20z" fill="#fff"/></svg>Zoom</span>
+      <span style="left:216px"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M3 11a2.500 2.500 0 0 1 2.500-2.500H17V16H3z" fill="#ea4335"/><path d="M3 20h14v7.500H5.500A2.500 2.500 0 0 1 3 25z" fill="#0066da"/><path d="M3 16h14v4H3z" fill="#2684fc"/><path d="M17 8.500h4.500A2.500 2.500 0 0 1 24 11v5l-7 0z" fill="#ffba00"/><path d="M17 20h7v5a2.500 2.500 0 0 1-2.500 2.500H17z" fill="#00832d"/><path d="M24 16.200 33 9.500v17L24 19.800z" fill="#00ac47"/><path d="M17 16h7v4h-7z" fill="#00ac47"/></svg>Google Meet</span>
+      <span style="left:368px"><svg viewBox="0 0 36 36" aria-hidden="true"><rect x="9" y="8" width="25" height="21" rx="5" fill="#7b83eb"/><circle cx="26" cy="6" r="4.500" fill="#5059c9"/><rect x="1" y="9" width="20" height="20" rx="4" fill="#4b53bc"/><path fill="#fff" d="M6 14h10v2.600h-3.700V25h-2.600v-8.400H6z"/></svg>Teams</span>
+      <span style="left:490px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#ecebe8"/><g fill="#1c1a17"><circle cx="9.500" cy="18" r="2.300"/><circle cx="18" cy="18" r="2.300"/><circle cx="26.500" cy="18" r="2.300"/></g></svg>Any App</span>
     </div>
 
-    <div class="laptop" id="laptop">
-      <div class="rig" id="rig">
-        <div class="screen"><div class="win">
-          <div class="bar"><b><svg class="ico" style="font-size:16px"><use href="#i-mic"/></svg>KVL Live Translator</b><span class="wc"><span>&#8212;</span><span>&#9633;</span><span class="x">&#10005;</span></span></div>
-          <div class="cards">
-            <div class="wcard"><svg class="ico"><use href="#i-gear"/></svg><span class="listen"><i></i>Listening...</span><span class="wf" data-wf="26" style="height:22px;margin-left:4px"></span></div>
-            <div class="wcard"><div class="rec"><span class="rd"></span>00:12:36<span class="stop"><svg class="ico" style="font-size:11px;fill:#fff;stroke:none"><use href="#i-arrow"/></svg>Stop</span></div></div>
-          </div>
-          <div class="panes">
-            <div class="pane"><div class="ph"><em class="en">EN</em>Live Transcript<span class="cl">&#10005;</span></div>
-              <p>We will review the project timeline today and finalize the next steps. The team should complete the development by next month.</p>
-              <div class="pf"><span class="wf" data-wf="18"></span><span>10:24 AM</span></div></div>
-            <div class="pane"><div class="ph"><em class="hi">HI</em>Hindi / Hinglish<span class="cl">&#10005;</span></div>
-              <p class="dv">हम आज प्रोजेक्ट की टाइमलाइन की समीक्षा करेंगे और अगले कदमों को अंतिम रूप देंगे। टीम को अगले महीने तक डेवलपमेंट पूरा करना चाहिए।</p>
-              <div class="pf"><span class="wf" data-wf="18"></span><span>10:24 AM</span></div></div>
-          </div>
-          <div class="tools">
-            <div class="tool"><svg class="ico"><use href="#i-copilot"/></svg>Copilot</div>
-            <div class="tool"><svg class="ico"><use href="#i-doc"/></svg>Summary</div>
-            <div class="tool"><svg class="ico"><use href="#i-rec"/></svg>Translate My Speech</div>
-            <div class="tool"><svg class="ico"><use href="#i-copy"/></svg>Meeting Notes</div>
-          </div>
-        </div></div>
-        <div class="deck"></div>
-      </div>
+    <!-- live cards -->
+    <div class="h-listen"><span class="mic"><svg class="ico"><use href="#i-mic"/></svg></span><b>Listening...</b><div class="wf" data-wf="38" data-lw></div></div>
+    <svg class="h-arc" viewBox="0 0 120 330" aria-hidden="true"><path d="M52 0C-6 70 -6 220 52 300" fill="none" stroke="rgba(120,130,140,.55)" stroke-width="1.100"/></svg>
+    <div class="h-rail">
+      <i><svg class="ico"><use href="#i-mic"/></svg></i><i><svg class="ico"><use href="#i-doc"/></svg></i><i><svg class="ico"><use href="#i-trans"/></svg></i><i><svg class="ico"><use href="#i-spark"/></svg></i><i><svg class="ico"><use href="#i-doc"/></svg></i>
+    </div>
+    <div class="h-script">Different<br>Languages<br>One Conversation</div>
+    <svg class="h-curve" viewBox="0 0 220 90" aria-hidden="true"><path d="M0 70C60 30 140 10 214 30" fill="none" stroke="#d9a63f" stroke-width="1.300"/></svg>
+
+    <div class="h-tr en"><div class="hd"><span class="lang">EN</span><b>Live English</b><div class="wf blue" data-wf="14" data-lw></div></div><p>We will review the project timeline today and finalize the next steps.</p><time>10:24 AM</time></div>
+    <div class="h-tr hi"><div class="hd"><span class="lang">HI</span><b>Hindi / Hinglish</b><div class="wf green" data-wf="14" data-lw></div></div><p lang="hi">हम आज प्रोजेक्ट की टाइमलाइन की समीक्षा करेंगे और अगले कदमों को अंतिम रूप देंगे।</p><time>10:24 AM</time></div>
+
+    <!-- stats -->
+    <div class="h-stats">
+      <div><svg class="ico bolt"><use href="#i-bolt"/></svg><span><b>Real-Time<br>Translation</b></span></div>
+      <div><svg class="ico"><use href="#i-shield"/></svg><span><b>100% Private</b><em>Your data stays on your computer</em></span></div>
+      <div><svg class="ico"><use href="#i-wifi"/></svg><span><b>Works Offline</b><em>No internet required</em></span></div>
+      <div><svg class="ico"><use href="#i-globe"/></svg><span><b>Multiple Languages</b><em>100+ languages</em></span></div>
+      <div><svg class="ico"><use href="#i-people"/></svg><span><b>10K+ Users</b><em>Trusted worldwide</em></span></div>
+      <div><svg class="ico"><use href="#i-star"/></svg><span><b>4.9/5 Rating</b><em>Loved by users</em></span></div>
     </div>
 
-    <div class="flags glass" aria-hidden="true">
-      <div class="flag"><svg viewBox="0 0 52 52" width="52" height="52"><rect width="52" height="52" fill="#fff"/><g fill="#d33"><rect y="0" width="52" height="4"/><rect y="8" width="52" height="4"/><rect y="16" width="52" height="4"/><rect y="24" width="52" height="4"/><rect y="32" width="52" height="4"/><rect y="40" width="52" height="4"/><rect y="48" width="52" height="4"/></g><rect width="26" height="28" fill="#2a3f8f"/><g fill="#fff"><circle cx="6" cy="6" r="1.500"/><circle cx="13" cy="6" r="1.500"/><circle cx="20" cy="6" r="1.500"/><circle cx="9" cy="13" r="1.500"/><circle cx="16" cy="13" r="1.500"/><circle cx="6" cy="20" r="1.500"/><circle cx="13" cy="20" r="1.500"/><circle cx="20" cy="20" r="1.500"/></g></svg></div>
-      <div class="flag"><svg viewBox="0 0 52 52" width="52" height="52"><rect width="52" height="18" fill="#f6931f"/><rect y="18" width="52" height="16" fill="#fff"/><rect y="34" width="52" height="18" fill="#138808"/><circle cx="26" cy="26" r="6" fill="none" stroke="#1d3c9c" stroke-width="1.600"/><circle cx="26" cy="26" r="1.500" fill="#1d3c9c"/></svg></div>
-      <div class="flag"><svg viewBox="0 0 52 52" width="52" height="52"><rect width="52" height="52" fill="#1d3a8a"/><path d="M0 0 52 52M52 0 0 52" stroke="#fff" stroke-width="9"/><path d="M0 0 52 52M52 0 0 52" stroke="#d1202f" stroke-width="3.500"/><path d="M26 0v52M0 26h52" stroke="#fff" stroke-width="14"/><path d="M26 0v52M0 26h52" stroke="#d1202f" stroke-width="8"/></svg></div>
-      <div class="more"><i></i><i></i><i></i></div>
+    <!-- how it works -->
+    <div class="h-how" id="how">
+      <div class="ey"><i></i>HOW IT WORKS</div>
+      <h2>From voice<br>to understanding<br><span class="gold-t">in seconds.</span></h2>
     </div>
-
-    <div class="stats glass">
-      <div class="stat"><svg class="ico fill"><use href="#i-people"/></svg><div><b>10K+</b><span>Happy Users</span></div></div>
-      <div class="stat"><svg class="ico fill"><use href="#i-star"/></svg><div><b>4.9/5</b><span>User Rating</span></div></div>
-      <div class="stat"><svg class="ico fill" viewBox="0 0 24 24"><path d="M12 2.500 4.500 5.500v5.800c0 4.600 3.100 8.400 7.500 10.200 4.400-1.800 7.500-5.600 7.500-10.200V5.500z"/><path d="m8.800 12 2.400 2.500 4.200-4.800" fill="none" stroke="#2a2111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>100% Secure</b><span>Your data stays on your computer</span></div></div>
-    </div>
-    <div class="wavepill glass"><span class="wf" data-wf="46" style="height:56px"></span><span class="micbtn"><svg class="ico" style="stroke-width:2"><use href="#i-mic"/></svg></span></div>
-  </div>
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-<section class="how" id="how">
-  <div class="how-in">
-    <div class="rv">
-      <span class="pill"><svg class="ico"><use href="#i-spark"/></svg>HOW IT WORKS</span>
-      <h2>From Audio to<br><span class="gold-t">Understanding</span></h2>
-      <div class="arrow-line"><i></i><svg class="ico"><use href="#i-arrow"/></svg></div>
-    </div>
-    <div class="steps rv">
-      <div class="step"><span class="n">1</span><svg class="ico"><use href="#i-mic"/></svg>Capture<span class="wf" data-wf="16"></span></div>
-      <div class="step"><span class="n">2</span><svg class="ico"><use href="#i-doc"/></svg>Transcribe<span class="wf" data-wf="16" data-soft></span></div>
-      <div class="step"><span class="n">3</span><svg class="ico"><use href="#i-trans"/></svg>Translate<span class="wf" data-wf="16" data-soft></span></div>
-      <div class="step"><span class="n">4</span><svg class="ico" style="fill:currentColor;stroke:none"><use href="#i-spark"/></svg>AI Copilot<span class="wf" data-wf="16" data-soft></span></div>
-      <div class="step"><span class="n">5</span><svg class="ico"><use href="#i-list"/></svg>Summary<span class="wf" data-wf="16"></span></div>
-      <a class="next" href="#features" aria-label="Next"><svg class="ico"><use href="#i-arrow"/></svg></a>
+    <div class="h-steps">
+      <div class="stp"><span class="n">01</span><svg class="ico"><use href="#i-mic"/></svg><b>Capture</b><div class="wf" data-wf="26" data-lw></div></div><svg class="ico ar"><use href="#i-arrow"/></svg>
+      <div class="stp"><span class="n">02</span><svg class="ico"><use href="#i-doc"/></svg><b>Transcribe</b><div class="wf" data-wf="26" data-lw></div></div><svg class="ico ar"><use href="#i-arrow"/></svg>
+      <div class="stp"><span class="n">03</span><svg class="ico"><use href="#i-trans"/></svg><b>Translate</b><div class="wf" data-wf="26" data-lw></div></div><svg class="ico ar"><use href="#i-arrow"/></svg>
+      <div class="stp"><span class="n">04</span><svg class="ico"><use href="#i-spark"/></svg><b>AI Copilot</b><div class="wf" data-wf="26" data-lw></div></div><svg class="ico ar"><use href="#i-arrow"/></svg>
+      <div class="stp"><span class="n">05</span><svg class="ico"><use href="#i-doc"/></svg><b>Summary</b><div class="wf" data-wf="26" data-lw></div></div>
     </div>
   </div>
-  <div class="scroll"><span class="mouse"></span></div>
 </section>
 
 <!-- ================= FEATURES ================= -->
@@ -511,6 +621,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="price rv"><span class="pill"><svg class="ico"><use href="#i-spark"/></svg>PRICING</span><h2 style="font-size:clamp(30px,3.4vw,44px)">Pricing jald <span class="gold-t">announce hogi.</span></h2><p>Tab tak app download karke try karo.</p><a class="btn gold" href="#get">Download App</a></div>
   </div>
 </section>
+<!-- ================= FAQ ================= -->
+<section class="s" id="faq">
+  <div class="wrap">
+    <div class="s-head rv"><span class="pill"><svg class="ico"><use href="#i-spark"/></svg>FAQ</span><h2>Aksar <span class="gold-t">poochhe jaane wale sawal.</span></h2></div>
+    <div class="faq rv">
+      <details><summary>Kya ye offline kaam karta hai?</summary><p>Haan. Transcription local Whisper se hota hai, to internet ke bina bhi chalta hai. Cloud providers optional hain.</p></details>
+      <details><summary>Mera data kahan rehta hai?</summary><p>Meeting history aur settings aapke computer par local database me rehti hain. API keys encrypted store hoti hain.</p></details>
+      <details><summary>Kaun si meetings me kaam karta hai?</summary><p>Zoom, Google Meet, Teams ya koi bhi app, kyunki ye system audio capture karta hai.</p></details>
+      <details><summary>Kin platforms par milta hai?</summary><p>Windows aur Ubuntu/Linux ke liye download available hai. macOS jald aayega.</p></details>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer><div class="wrap"><span>KVL Live Translator</span><span>v1.0.0</span></div></footer>
@@ -649,30 +772,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   });
 
   /* scale the 1536px hero stage to the viewport */
-  var stage=document.getElementById('stage'), lap=document.getElementById('laptop'), hero=document.querySelector('.hero');
+  var stage=document.getElementById('st');
   function fit(){
     var w=document.documentElement.clientWidth;
-    if(w>820){ var k=Math.min(1,w/1536); stage.style.setProperty('--k',k); hero.style.height=(628*k)+'px'; lap.style.removeProperty('--lk'); }
-    else { stage.style.removeProperty('--k'); hero.style.height=''; lap.style.setProperty('--lk',Math.min(1,(w-40)/640)); }
+    if(w>820) stage.parentNode.style.setProperty('--k',Math.min(1,w/1536));
+    else stage.parentNode.style.removeProperty('--k');
   }
   fit(); window.addEventListener('resize',fit);
-
-  /* subtle laptop sway */
-  var rig=document.getElementById('rig');
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hover:hover)').matches){
-    hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5;rig.style.setProperty('--ry',(-14+x*5)+'deg')});
-    rig.style.transition='transform .5s cubic-bezier(.2,.8,.2,1)';
-  }
 
   /* reveal */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 
   /* active nav link */
-  var links=[].slice.call(document.querySelectorAll('.menu a'));
+  var links=[].slice.call(document.querySelectorAll('.h-menu a'));
   var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
   addEventListener('scroll',function(){
-    var y=scrollY+120, cur=0; secs.forEach(function(s,i){ if(s&&s.offsetTop<=y) cur=i });
+    var cur=0,best=-1e9; secs.forEach(function(s,i){ if(!s) return; var t=s.getBoundingClientRect().top; if(t<=120&&t>best){best=t;cur=i} });
     links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
   },{passive:true});
 })();
