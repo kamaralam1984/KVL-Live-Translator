@@ -103,6 +103,18 @@ Don't run `pnpm dev:backend` and `pnpm dev` at the same time: the desktop app sp
 backend on port 4319, fails with `EADDRINUSE` if the port is taken, and then quits after its
 readiness check times out.
 
+### Website and login
+
+`website/index.html` is the marketing homepage. `pnpm dev:website` serves it at
+`http://127.0.0.1:8080` together with a small email + password auth API (`website/server/server.mjs`,
+no npm dependencies — `node:http`, `node:sqlite`, `node:crypto`). Users live in
+`website/server/data/auth.sqlite3` (git-ignored). Passwords are scrypt-hashed with a per-user salt,
+sessions are random tokens stored hashed and sent as an `HttpOnly; SameSite=Lax` cookie, and
+login/signup are rate limited. It binds to localhost only; to expose it, put it behind HTTPS and set
+`SECURE_COOKIES=1`, `HOST` and `ALLOWED_HOSTS`. Opening the HTML directly (or the published
+claude.ai preview) shows the page but login fails, because there is no server behind it. This login
+is separate from the desktop app and the app's backend; it doesn't gate any app feature.
+
 ### Linux notes
 
 - `pnpm dev` passes `--ozone-platform=x11` to Electron. On the Wayland setup this was debugged

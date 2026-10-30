@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "pnpm --filter @kvl/desktop dev",
     "dev:backend": "pnpm --filter @kvl/backend dev",
+    "dev:website": "node website/server/server.mjs",
     "build": "pnpm --filter \"./packages/**\" typecheck && pnpm --filter @kvl/backend build && pnpm --filter @kvl/desktop build",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "pnpm -r --if-present lint"
