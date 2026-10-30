@@ -1,0 +1,16 @@
+{
+  "name": "kvl-live-translator",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @kvl/desktop dev",
+    "dev:backend": "pnpm --filter @kvl/backend dev",
+    "build": "pnpm --filter \"./packages/**\" typecheck && pnpm --filter @kvl/backend build && pnpm --filter @kvl/desktop build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "pnpm -r --if-present lint"
+  }
+}

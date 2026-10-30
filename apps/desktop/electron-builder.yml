@@ -1,0 +1,60 @@
+appId: com.kvl.livetranslator
+productName: KVL Live Translator
+# Real bug found by actually building the AppImage target (not caught by
+# --dir alone): electron-builder defaults executableName from the npm
+# package name (@kvl/desktop -> sanitized to "@kvldesktop"), and AppImage
+# packaging rejects the leading "@" as unsafe in a file path. Set explicitly.
+executableName: kvl-live-translator
+directories:
+  buildResources: resources
+  output: ../../release
+files:
+  - out/**/*
+asarUnpack:
+  - resources/**
+
+# Phase 15: packages the tsup-bundled backend (apps/backend/dist — a single
+# self-contained CJS file plus its copied SQL migrations, see
+# apps/backend/tsup.config.ts) alongside a real better-sqlite3 package
+# folder, so a packaged build can spawn it without pnpm/tsx present. The
+# ABI-mismatch worry that blocked this in earlier phases was directly
+# disproven: better-sqlite3@13.0.3 is built on N-API (ABI-stable across
+# Node/Electron), verified by actually running its prebuilt binary under
+# ELECTRON_RUN_AS_NODE and round-tripping a real DB — no @electron/rebuild
+# needed. See src/main/backendProcess.ts's packaged-mode spawn branch.
+extraResources:
+  - from: ../backend/dist
+    to: backend
+  - from: ../backend/node_modules/better-sqlite3
+    to: backend/node_modules/better-sqlite3
+
+linux:
+  target: AppImage
+  icon: icon.png
+  category: Utility
+mac:
+  target: dmg
+  icon: icon.png
+  category: public.app-category.productivity
+win:
+  target: nsis
+  icon: icon.png
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: KVL Live Translator
+  # Never silently delete a user's meeting history/settings on uninstall —
+  # matches this app's standing "never silently delete user data" rule
+  # (Phase 13's Delete-All-Data confirm pattern, Phase 14's crash-recovery
+  # Delete confirm, etc.). A real interactive "also delete my data?" prompt
+  # at uninstall time needs a custom NSIS script — out of scope for this
+  # pass; the safe, defensible default (keep it) is configured instead.
+  deleteAppDataOnUninstall: false
+
+# Code-signing/notarization (mac.hardenedRuntime, afterSign, win signing
+# certs) and a `publish:` update-feed block are intentionally left
+# unconfigured — no certificates or release infrastructure exist in this
+# environment. Genuinely PENDING, not silently skipped; see README's
+# Production Readiness Report.

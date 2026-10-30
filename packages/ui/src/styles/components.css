@@ -1,0 +1,518 @@
+/*
+ * Component primitives for the Platinum Silver & Gold theme, ported from
+ * /10-platinum.html. Metallic and gold gradients are intentionally literal
+ * hex-stop gradients (not tokenized) — they're a fixed "material" look
+ * independent of light/dark mode, exactly as in the reference kit. Ambient
+ * shadows/glows use --shadow-tint so the same rule reads as a soft drop
+ * shadow in light mode and a silver glow in dark mode.
+ */
+
+@layer components {
+  /* ---- shine keyframes (shared) ---- */
+  @keyframes kvl-idle-shine {
+    0% { transform: translateX(-130%) skewX(-18deg); }
+    38% { transform: translateX(230%) skewX(-18deg); }
+    100% { transform: translateX(230%) skewX(-18deg); }
+  }
+  @keyframes kvl-sheen-sweep {
+    from { transform: translateX(-130%) skewX(-18deg); }
+    to { transform: translateX(230%) skewX(-18deg); }
+  }
+  @keyframes kvl-line-shine {
+    to { background-position: -200% 0; }
+  }
+  @keyframes kvl-tile-breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(var(--shadow-tint) / 0); }
+    50% { box-shadow: 0 0 16px -4px rgb(var(--shadow-tint) / 0.3); }
+  }
+  @keyframes kvl-ring-pulse {
+    0%, 100% { filter: drop-shadow(0 0 6px rgb(var(--shadow-tint) / 0.25)); }
+    50% { filter: drop-shadow(0 0 14px rgb(var(--shadow-tint) / 0.6)); }
+  }
+  @keyframes kvl-pulse-glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @keyframes kvl-check-pop {
+    0% { transform: scale(0.7); }
+    60% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+  @keyframes kvl-bar-shine {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* ---- metallic fill (shared "shine like metal" treatment) ---- */
+  .kvl-metal {
+    position: relative;
+    overflow: hidden;
+    color: #101214;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 20px -10px rgb(var(--shadow-tint) / 0.55);
+  }
+  .kvl-metal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .kvl-metal:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.65) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-sheen-sweep 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ---- buttons ---- */
+  .kvl-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: var(--radius-md);
+    font-size: 13.5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+  .kvl-btn:active {
+    transform: scale(0.97);
+  }
+  .kvl-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .kvl-btn-gold {
+    position: relative;
+    overflow: hidden;
+    color: rgb(var(--accent-ink));
+    background: linear-gradient(135deg, #f5dea0 0%, #d9ac3c 45%, #b8860b 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 24px -10px rgba(184, 134, 11, 0.6);
+  }
+  .kvl-btn-gold:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #f9e8b8 0%, #e6bd4e 45%, #c6960f 100%);
+  }
+  .kvl-btn-gold::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 244, 214, 0.6) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .kvl-btn-gold::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    pointer-events: none;
+  }
+  .kvl-btn-gold:hover::after {
+    animation: kvl-sheen-sweep 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .kvl-btn-metal {
+    color: #101214;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 10px 24px -10px rgb(var(--shadow-tint) / 0.55);
+    position: relative;
+    overflow: hidden;
+  }
+  .kvl-btn-metal:hover {
+    transform: translateY(-2px);
+  }
+  .kvl-btn-metal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .kvl-btn-secondary {
+    background: rgb(var(--surface));
+    color: rgb(var(--foreground));
+    border: 1px solid rgb(var(--border) / 0.26);
+  }
+  .kvl-btn-secondary:hover {
+    background: rgb(var(--background));
+    border-color: rgb(var(--border) / 0.45);
+    transform: translateY(-2px);
+  }
+
+  .kvl-btn-ghost {
+    background: transparent;
+    color: rgb(var(--foreground));
+  }
+  .kvl-btn-ghost:hover {
+    background: rgb(var(--surface-tint));
+    transform: translateY(-2px);
+  }
+
+  .kvl-btn-danger {
+    background: rgb(var(--danger));
+    color: #2a0705;
+  }
+  .kvl-btn-danger:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+  }
+
+  /* ---- toggle ---- */
+  .kvl-toggle {
+    position: relative;
+    height: 24px;
+    width: 44px;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--border) / 0.26);
+    background: rgb(var(--border) / 0.26);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    flex-shrink: 0;
+  }
+  .kvl-toggle .kvl-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 18px;
+    width: 18px;
+    border-radius: 999px;
+    background: rgb(var(--foreground));
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .kvl-toggle.kvl-on {
+    border-color: transparent;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    box-shadow: 0 0 0 1px rgb(var(--shadow-tint) / 0.3), 0 4px 14px -4px rgb(var(--shadow-tint) / 0.7);
+  }
+  .kvl-toggle.kvl-on .kvl-toggle-thumb {
+    transform: translateX(20px);
+    background: #101214;
+  }
+  .kvl-toggle.kvl-on::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgb(var(--shadow-tint) / 0.45), transparent 70%);
+    animation: kvl-pulse-glow 2.2s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  /* ---- checkbox / radio ---- */
+  .kvl-checkbox,
+  .kvl-radio {
+    position: relative;
+    height: 19px;
+    width: 19px;
+    border-radius: 6px;
+    border: 1.5px solid rgb(var(--border) / 0.4);
+    background: rgb(var(--surface));
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease-out;
+  }
+  .kvl-radio {
+    border-radius: 999px;
+  }
+  .kvl-checkbox.kvl-checked,
+  .kvl-radio.kvl-checked {
+    border-color: transparent;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    box-shadow: 0 0 0 1px rgb(var(--shadow-tint) / 0.3), 0 3px 10px -3px rgb(var(--shadow-tint) / 0.7);
+    animation: kvl-check-pop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .kvl-checkbox.kvl-checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #101214;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .kvl-radio.kvl-checked::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 999px;
+    background: #101214;
+  }
+
+  /* ---- badges ---- */
+  .kvl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .kvl-badge-neutral {
+    background: rgb(var(--border) / 0.26);
+    color: rgb(var(--foreground));
+  }
+  .kvl-badge-color {
+    background: rgb(var(--border) / 0.18);
+    color: rgb(var(--foreground));
+  }
+  .kvl-badge-success {
+    background: rgb(var(--success) / 0.14);
+    color: rgb(var(--success));
+  }
+  .kvl-badge-warning {
+    background: rgb(var(--warning) / 0.16);
+    color: rgb(var(--warning));
+  }
+  .kvl-badge-danger {
+    background: rgb(var(--danger) / 0.16);
+    color: rgb(var(--danger));
+  }
+  .kvl-badge-gold {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5dea0 0%, #d9ac3c 45%, #b8860b 100%);
+    color: rgb(var(--accent-ink));
+  }
+  .kvl-badge-gold::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 244, 214, 0.7) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3.4s ease-in-out infinite;
+  }
+
+  /* ---- cards ---- */
+  .kvl-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--border) / 0.26);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: 0 1px 2px rgb(var(--shadow-tint) / 0.12), 0 12px 26px -16px rgb(var(--shadow-tint) / 0.4);
+    transition: all 0.2s ease-out;
+  }
+  .kvl-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--shadow-tint) / 0.3) 25%,
+      #ffffff 50%,
+      rgb(var(--shadow-tint) / 0.3) 75%,
+      transparent
+    );
+    background-size: 250% 100%;
+    background-position: 200% 0;
+    animation: kvl-line-shine 4s linear infinite;
+  }
+  .kvl-card-interactive {
+    cursor: pointer;
+  }
+  .kvl-card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: rgb(var(--border) / 0.45);
+  }
+
+  /* ---- tool card (AI tool list item) ---- */
+  .kvl-tool-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--border) / 0.26);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    transition: all 0.2s ease-out;
+  }
+  .kvl-tool-card:hover {
+    transform: translateY(-2px);
+    border-color: rgb(var(--border) / 0.4);
+  }
+  .kvl-tool-icon {
+    position: relative;
+    overflow: hidden;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    color: #101214;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 14px -8px rgb(var(--shadow-tint) / 0.55);
+  }
+  .kvl-tool-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3.4s ease-in-out infinite;
+  }
+
+  /* ---- progress ---- */
+  .kvl-progress-track {
+    height: 7px;
+    border-radius: 999px;
+    background: rgb(var(--border) / 0.26);
+    overflow: hidden;
+    width: 100%;
+  }
+  .kvl-progress-fill {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+  }
+  .kvl-progress-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6) 50%, transparent);
+    background-size: 60% 100%;
+    background-repeat: no-repeat;
+    animation: kvl-bar-shine 2.2s ease-in-out infinite;
+  }
+  .kvl-ring-wrap {
+    position: relative;
+    filter: drop-shadow(0 0 8px rgb(var(--shadow-tint) / 0.4));
+    animation: kvl-ring-pulse 2.6s ease-in-out infinite;
+  }
+  .kvl-ring-wrap svg {
+    transform: rotate(-90deg);
+  }
+  .kvl-ring-pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---- chat bubbles ---- */
+  .kvl-chat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+  }
+  .kvl-bubble {
+    position: relative;
+    overflow: hidden;
+    max-width: 82%;
+    padding: 9px 12px;
+    border-radius: 13px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .kvl-bubble-mine {
+    background: linear-gradient(135deg, #ffffff 0%, #cfd6dc 45%, #7c868f 100%);
+    color: #101214;
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 12px -8px rgb(var(--shadow-tint) / 0.6);
+  }
+  .kvl-bubble-mine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.5) 50%, transparent 65%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: kvl-idle-shine 3.6s ease-in-out infinite;
+  }
+  .kvl-bubble-ai {
+    background: rgb(var(--surface-tint));
+    color: rgb(var(--foreground));
+    border-bottom-left-radius: 4px;
+  }
+
+  /* ---- toast ---- */
+  .kvl-toast-viewport {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    width: min(360px, calc(100vw - 40px));
+  }
+  .kvl-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--border) / 0.26);
+    box-shadow: 0 12px 26px -12px rgb(var(--shadow-tint) / 0.5);
+    font-size: 12.5px;
+    color: rgb(var(--foreground));
+    animation: kvl-toast-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes kvl-toast-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .kvl-toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .kvl-toast-info .kvl-toast-dot { background: rgb(var(--accent)); }
+  .kvl-toast-success .kvl-toast-dot { background: rgb(var(--success)); }
+  .kvl-toast-warning .kvl-toast-dot { background: rgb(var(--warning)); }
+  .kvl-toast-error .kvl-toast-dot { background: rgb(var(--danger)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kvl-metal::before,
+    .kvl-btn-gold::before,
+    .kvl-btn-metal::before,
+    .kvl-toggle.kvl-on::before,
+    .kvl-badge-gold::before,
+    .kvl-card::before,
+    .kvl-tool-icon::before,
+    .kvl-progress-fill::after,
+    .kvl-ring-wrap,
+    .kvl-bubble-mine::before,
+    .kvl-checkbox.kvl-checked,
+    .kvl-radio.kvl-checked,
+    .kvl-toast {
+      animation: none;
+    }
+  }
+}

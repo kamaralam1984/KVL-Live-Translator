@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["src"],
+  // This package is deliberately environment-neutral (no DOM, no Node types)
+  // since it's imported as source by both the browser renderer and the Node
+  // backend — never add @types/node package-wide just to typecheck a test
+  // script. src/__tests__ is proven by tsx actually running it (a real Node
+  // runtime), not by tsc.
+  "exclude": ["src/__tests__"]
+}

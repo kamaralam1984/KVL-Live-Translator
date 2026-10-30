@@ -1,0 +1,87 @@
+/*
+ * Design tokens for the "Platinum Silver & Gold" theme.
+ * Dark values are ported 1:1 from /10-platinum.html. Light values are a new
+ * premium companion palette (the reference kit is dark-only), using the same
+ * decorative-vs-text-safe accent split as kvl-business-solutions/next-app
+ * (--accent for large fills, --accent-text darkened for small/legible text).
+ * All colors are space-separated RGB triplets so Tailwind's
+ * `rgb(var(--x) / <alpha-value>)` pattern can apply arbitrary alpha.
+ */
+
+@layer base {
+  :root {
+    /* LIGHT — warm pearl/ivory, graphite ink */
+    --background: 250 249 247;
+    --surface: 255 255 255;
+    --surface-tint: 244 243 241;
+    --foreground: 20 22 24;
+    --muted: 99 108 106;
+    --border: 30 35 40;
+    --accent: 184 134 11;
+    --accent-text: 138 90 26;
+    --accent-ink: 42 29 5;
+    --success: 22 163 74;
+    --warning: 194 120 15;
+    --danger: 220 38 38;
+    --shadow-tint: 15 23 42;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.15rem;
+  }
+
+  html.dark {
+    /* DARK — ported from 10-platinum.html */
+    --background: 12 13 15;
+    --surface: 23 25 28;
+    --surface-tint: 34 37 42;
+    --foreground: 243 246 245;
+    --muted: 154 168 164;
+    --border: 207 214 220;
+    --accent: 217 172 60;
+    --accent-text: 217 172 60;
+    --accent-ink: 42 29 5;
+    --success: 52 199 122;
+    --warning: 240 168 62;
+    --danger: 255 84 112;
+    --shadow-tint: 207 214 220;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: rgb(var(--background));
+    color: rgb(var(--foreground));
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.28);
+    color: rgb(var(--accent-ink));
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--accent) / 0.3);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--accent) / 0.5);
+  }
+
+  /* Phase 14 accessibility pass — a visible keyboard-focus ring app-wide.
+   * `:focus-visible` (not `:focus`) so mouse/touch clicks stay clean, matching
+   * the same accent token used for selection above. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+  }
+}

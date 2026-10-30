@@ -1,0 +1,16 @@
+node_modules/
+dist/
+out/
+build/
+release/
+*.log
+.env
+.env.local
+!.env.example
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+.DS_Store
+Thumbs.db
+.claude/

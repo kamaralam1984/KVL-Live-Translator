@@ -1,0 +1,44 @@
+{
+  "name": "@kvl/desktop",
+  "version": "1.0.0",
+  "description": "Real-time English-to-Hindi/Hinglish meeting translator and AI copilot for Zoom/Google Meet.",
+  "author": "KVL Live Translator",
+  "private": true,
+  "type": "module",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "build:unpack": "electron-vite build && electron-builder --dir",
+    "generate-icon": "node scripts/generate-icon.mjs resources/icon.png",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "test:audio-core": "tsx src/renderer/src/audio/__tests__/pipeline.node-test.ts",
+    "test:desktop-main-core": "tsx src/main/__tests__/mini-window.node-test.ts",
+    "test:meeting-store-core": "tsx src/renderer/src/state/__tests__/meeting-store.node-test.ts"
+  },
+  "dependencies": {
+    "@kvl/ui": "workspace:*",
+    "@kvl/shared": "workspace:*",
+    "@kvl/audio": "workspace:*",
+    "electron-log": "^5.4.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "electron": "^43.4.1",
+    "electron-vite": "^5.0.0",
+    "vite": "^7.3.6",
+    "electron-builder": "^26.15.3",
+    "tailwindcss": "3.4.17",
+    "postcss": "^8.5.26",
+    "autoprefixer": "^10.5.4",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5.9.3",
+    "tsx": "^4.23.12",
+    "@types/node": "^22",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4"
+  }
+}
