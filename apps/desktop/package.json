@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Real-time English-to-Hindi/Hinglish meeting translator and AI copilot for Zoom/Google Meet.",
   "author": "KVL Live Translator",
+  "homepage": "https://github.com/kamaralam1984/KVL-Live-Translator",
   "private": true,
   "type": "module",
   "main": "./out/main/index.js",

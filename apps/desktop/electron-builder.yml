@@ -28,18 +28,36 @@ extraResources:
   - from: ../backend/node_modules/better-sqlite3
     to: backend/node_modules/better-sqlite3
 
+# Version-less artifact names so the website can link to a stable
+# GitHub Releases "latest/download/<name>" URL.
 linux:
-  target: AppImage
+  target:
+    - AppImage
+    - deb
   icon: icon.png
   category: Utility
+  maintainer: KVL Live Translator <yusuf@freedomwithai.com>
+appImage:
+  artifactName: KVL-Live-Translator-Linux.AppImage
+deb:
+  artifactName: KVL-Live-Translator-Ubuntu.deb
 mac:
   target: dmg
   icon: icon.png
   category: public.app-category.productivity
 win:
-  target: nsis
+  target:
+    - target: zip
+      arch: x64
   icon: icon.png
+  # No wine on the Linux build host, so rcedit (exe icon/metadata editing)
+  # can't run; the installer itself still gets the icon.
+  signAndEditExecutable: false
+  artifactName: KVL-Live-Translator-Windows.${ext}
+# NSIS needs wine on a Linux host; build the installer on Windows/CI instead.
+# For now Windows ships as a portable zip (see `win.target`).
 nsis:
+  artifactName: KVL-Live-Translator-Windows-Setup.exe
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true

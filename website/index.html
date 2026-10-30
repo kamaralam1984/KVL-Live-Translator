@@ -290,6 +290,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 }
 @media (max-width:560px){.dlt{display:none}.btn.deep{padding:11px 13px}.right{gap:8px}#acct .btn{padding:9px 14px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+.dl{max-width:880px;margin:0 auto;text-align:center;display:grid;gap:26px}
+.dl h2{font-size:clamp(30px,3.4vw,44px)}.dl>p{color:var(--mute)}
+.dlg{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left}
+.dlc{padding:30px;border-radius:26px;background:var(--card);border:1px solid var(--card-line);box-shadow:var(--card-shadow);display:grid;gap:12px;align-content:start}
+.dlc h3{font-size:22px}.dlc p{color:var(--mute);font-size:14px}.dlc .btn{justify-content:center}
+.dlc .alt{font-size:13.5px;text-align:center;color:var(--mute)}.dlc .alt a{text-decoration:underline}
+@media (max-width:700px){.dlg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -362,7 +369,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="badge"><i></i>Real-Time Meeting Translator</div>
     <h1><span>Meet</span><span class="gold-t">Understand</span><span>Respond</span></h1>
     <p class="sub">Your real-time meeting language assistant.</p>
-    <a class="btn gold cta1" href="#get"><svg viewBox="0 0 24 24"><path fill="#2a1d06" d="M3 5.100 10.500 4v7H3zM11.500 3.900 21 2.500V11h-9.500zM3 12h7.500v7L3 17.900zM11.500 12H21v8.500l-9.500-1.400z"/></svg>Download for Windows<svg class="ico" style="font-size:20px"><use href="#i-arrow"/></svg></a>
+    <a class="btn gold cta1" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Windows.zip" download><svg viewBox="0 0 24 24"><path fill="#2a1d06" d="M3 5.100 10.500 4v7H3zM11.500 3.900 21 2.500V11h-9.500zM3 12h7.500v7L3 17.900zM11.500 12H21v8.500l-9.500-1.400z"/></svg>Download for Windows<svg class="ico" style="font-size:20px"><use href="#i-arrow"/></svg></a>
     <a class="btn cta2" href="#how"><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.500v15l13-7.500z"/></svg></span>Watch Video</a>
     <div class="feats">
       <div><svg class="ico"><use href="#i-bolt"/></svg>Real-Time</div>
@@ -486,13 +493,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
+<!-- ================= DOWNLOAD ================= -->
+<section class="s" id="get">
+  <div class="wrap">
+    <div class="dl rv"><div><span class="pill"><svg class="ico"><use href="#i-dl"/></svg>DOWNLOAD</span></div><h2>Apne computer par <span class="gold-t">install karo.</span></h2><p>Windows aur Ubuntu (Linux) ke liye. Version 1.0.0.</p>
+      <div class="dlg">
+        <div class="dlc"><h3>Windows</h3><p>Windows 10/11 (64-bit). ZIP extract karo aur <code>kvl-live-translator.exe</code> chalao.</p><a class="btn gold" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Windows.zip" download>Download for Windows</a></div>
+        <div class="dlc"><h3>Ubuntu / Linux</h3><p>Ubuntu, Debian aur similar (64-bit). .deb install karo: <code>sudo apt install ./KVL-Live-Translator-Ubuntu.deb</code></p><a class="btn gold" href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Ubuntu.deb" download>Download .deb (Ubuntu)</a><div class="alt">ya <a href="https://github.com/kamaralam1984/KVL-Live-Translator/releases/latest/download/KVL-Live-Translator-Linux.AppImage" download>AppImage</a> (kisi bhi Linux par chalta hai)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= PRICING ================= -->
 <section class="s" id="pricing">
   <div class="wrap">
-    <div class="price rv"><span class="pill"><svg class="ico"><use href="#i-spark"/></svg>PRICING</span><h2 style="font-size:clamp(30px,3.4vw,44px)">Pricing jald <span class="gold-t">announce hogi.</span></h2><p>Tab tak app download karke try karo.</p><a class="btn gold" href="#get">Download for Windows</a></div>
+    <div class="price rv"><span class="pill"><svg class="ico"><use href="#i-spark"/></svg>PRICING</span><h2 style="font-size:clamp(30px,3.4vw,44px)">Pricing jald <span class="gold-t">announce hogi.</span></h2><p>Tab tak app download karke try karo.</p><a class="btn gold" href="#get">Download App</a></div>
   </div>
 </section>
-<span id="get"></span>
 </main>
 
 <footer><div class="wrap"><span>KVL Live Translator</span><span>v1.0.0</span></div></footer>
