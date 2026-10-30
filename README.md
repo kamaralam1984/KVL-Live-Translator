@@ -3,15 +3,30 @@
 A real-time meeting language assistant — transcribes English meeting speech, translates it into
 Hindi/Hinglish, and drafts English replies. Desktop app built with Electron, React, TypeScript, and Tailwind CSS.
 
-**Phase 1 (done):** architecture + fully navigable UI shell with placeholder screens.
-**Phase 2 (done):** a real, modular audio capture engine — microphone + system audio →
-buffering → Voice Activity Detection → clean chunks.
-**Phase 3 (done):** provider-based Speech-to-Text — local whisper.cpp with automatic cloud
-fallback, live transcript with timestamps/confidence/auto-detected language.
-**Phase 4 (done):** provider-based English → Hindi/Hinglish/Simple-Hindi/Simple-English
-translation — local phrasebook → Argos Translate → LibreTranslate → cloud LLM fallback chain,
-business-terminology preservation, self-imposed rate limits. No TTS yet — that plugs into
-`packages/tts`'s adapter interface in a later phase.
+**Status: all 15 phases are implemented (v1.0.0 release candidate).** See [CHANGELOG.md](CHANGELOG.md)
+for the release summary; each phase has its own section and test report below.
+
+| Phase | What it adds |
+|---|---|
+| 1 | Architecture + fully navigable UI shell |
+| 2 | Audio capture engine — microphone + system audio → buffering → Voice Activity Detection → chunks |
+| 3 | Speech-to-Text — local whisper.cpp with automatic cloud fallback |
+| 4 | Translation to Hindi/Hinglish/Simple-Hindi/Simple-English — phrasebook → Argos → LibreTranslate → cloud LLM |
+| 5 | Live Translator UI and floating mini window |
+| 6 | "My Response" — Hindi/Hinglish → professional English reply drafts |
+| 7 | Text-to-Speech — espeak-ng → browser → cloud |
+| 8 | "What does this mean?" per-sentence explanations |
+| 9 | Smart Meeting Copilot — questions, decisions, action items, deadlines |
+| 10 | AI Meeting Summary and Meeting History |
+| 11 | Multi-provider orchestration, cost modes, monthly budget |
+| 12 | Meeting-app window optimization (always-on-top, opacity, shortcuts) |
+| 13 | Privacy and security hardening |
+| 14 | Production polish and long-meeting stability |
+| 15 | Final release, installer and first-run setup wizard |
+
+Some features need local tools or API keys that are not bundled (whisper.cpp, Argos, cloud
+provider keys) — each phase section says how to enable them and what was verified versus left
+**PENDING** for your machine.
 
 ## Project structure
 
@@ -28,6 +43,10 @@ packages/
   translation/  TranslationProvider interface (start/stop/translate/getStatus/getCapabilities) —
                 the real Phase 4 providers live in apps/backend, see below
   tts/          TextToSpeechProvider interface
+  response/     "My Response" provider interface (Phase 6)
+  explain/      "What does this mean?" explanation interface (Phase 8)
+  copilot/      Smart Meeting Copilot interface (Phase 9)
+  summary/      AI Meeting Summary interface (Phase 10)
   ui/           Shared design system — Platinum Silver & Gold theme, React components
 ```
 
@@ -79,6 +98,30 @@ To run the backend on its own (e.g. to test the WebSocket API without Electron):
 ```bash
 pnpm dev:backend
 ```
+
+Don't run `pnpm dev:backend` and `pnpm dev` at the same time: the desktop app spawns its own
+backend on port 4319, fails with `EADDRINUSE` if the port is taken, and then quits after its
+readiness check times out.
+
+### Linux notes
+
+- `pnpm dev` passes `--ozone-platform=x11` to Electron. On the Wayland setup this was debugged
+  on, native Wayland made the main process exit right after the window surface was created; running
+  under XWayland is stable. The flag is ignored on Windows and macOS. Packaged builds don't get
+  it — launch them with `--ozone-platform=x11` yourself if you hit the same exit.
+- In dev the backend runs as a `pnpm → sh → tsx watch → node` chain. The app starts it in its own
+  process group and signals the whole group on quit, so no process is left holding port 4319. If the
+  Electron main process itself crashes, that cleanup can't run — if the next start fails with
+  `EADDRINUSE`, find the leftover with `ss -ltnp | grep 4319` and kill it.
+
+### Tests
+
+The backend's core logic tests run per area, e.g. `pnpm --filter @kvl/backend test:speech-core`
+(also `test:translation-core`, `test:response-core`, `test:tts-core`, `test:explain-core`,
+`test:copilot-core`, `test:summary-core`, `test:cost-core`, `test:security-core`). The desktop app
+has `test:audio-core`, `test:desktop-main-core` and `test:meeting-store-core`. There is no
+umbrella `pnpm test` yet, and there are no tests for `packages/*`. `pnpm lint` currently runs
+nothing — no package defines a `lint` script.
 
 ## Build
 
