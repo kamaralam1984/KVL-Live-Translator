@@ -66,9 +66,22 @@ function spawnBackend(): ChildProcess {
     // overrides an already-set process.env value, so this always wins over
     // whatever apps/backend/.env has for BACKEND_WS_TOKEN.
     env: { ...process.env, BACKEND_WS_PORT: String(BACKEND_WS_PORT), BACKEND_WS_TOKEN },
+    // pnpm → sh → tsx watch → node: killing only the pnpm pid leaves the rest
+    // alive holding the port. A detached child leads its own process group so
+    // stopBackend() can signal the whole tree.
+    detached: process.platform !== 'win32',
   });
   wireBackendProcess(proc);
   return proc;
+}
+
+function signalBackend(proc: ChildProcess, signal: NodeJS.Signals): void {
+  try {
+    if (process.platform !== 'win32' && proc.pid) process.kill(-proc.pid, signal);
+    else proc.kill(signal);
+  } catch {
+    // group already gone
+  }
 }
 
 function wireBackendProcess(proc: ChildProcess): void {
@@ -139,10 +152,11 @@ export function stopBackend(): void {
   if (!child) return;
   shuttingDown = true;
   const proc = child;
-  proc.kill('SIGTERM');
+  signalBackend(proc, 'SIGTERM');
+  // proc.killed is true as soon as a signal is sent, so check exit state instead.
   setTimeout(() => {
-    if (!proc.killed) proc.kill('SIGKILL');
-  }, GRACEFUL_SHUTDOWN_TIMEOUT_MS);
+    if (proc.exitCode === null && proc.signalCode === null) signalBackend(proc, 'SIGKILL');
+  }, GRACEFUL_SHUTDOWN_TIMEOUT_MS).unref();
   child = null;
   emitStatus('stopped');
 }

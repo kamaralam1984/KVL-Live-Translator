@@ -7,7 +7,7 @@
   "type": "module",
   "main": "./out/main/index.js",
   "scripts": {
-    "dev": "electron-vite dev",
+    "dev": "electron-vite dev -- --ozone-platform=x11",
     "build": "electron-vite build",
     "build:unpack": "electron-vite build && electron-builder --dir",
     "generate-icon": "node scripts/generate-icon.mjs resources/icon.png",
