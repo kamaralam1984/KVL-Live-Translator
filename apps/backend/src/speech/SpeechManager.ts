@@ -6,6 +6,7 @@ import { LocalWhisperProvider } from './providers/LocalWhisperProvider';
 import { CloudSpeechProvider } from './providers/CloudSpeechProvider';
 import { requestDecryptedKey } from './keyRelay';
 import { providersRepository } from '../db/repositories/providersRepository';
+import { sessionsRepository } from '../db/repositories/sessionsRepository';
 import { broadcast } from '../ws/connectionRegistry';
 import { backendEventBus } from '../events/backendEventBus';
 import { costManager } from '../cost/CostManager';
@@ -111,8 +112,11 @@ export class SpeechManager {
       this.buffer.insert(segment);
       broadcast({ type: 'transcript:update', sessionId, segment });
       broadcast({ type: 'stt:status', sessionId, providerId: outcome.providerId, status: 'ready' });
-      backendEventBus.emit('transcript:produced', { segment, sessionId });
-      this.recordUsage(outcome.providerId, chunk.durationMs / 1000, sessionId);
+      // Ad-hoc sessions (e.g. the setup wizard's mic test) have no meeting_sessions
+      // row; persisting or attributing usage to them violates the foreign keys.
+      const isMeetingSession = sessionsRepository.get(sessionId) !== undefined;
+      if (isMeetingSession) backendEventBus.emit('transcript:produced', { segment, sessionId });
+      this.recordUsage(outcome.providerId, chunk.durationMs / 1000, isMeetingSession ? sessionId : null);
     } catch (error) {
       log.error({ err: error, sessionId, chunkId: chunk.chunkId }, 'speech transcription failed');
       broadcast({ type: 'error', code: 'STT_FAILED', message: error instanceof Error ? error.message : String(error) });
